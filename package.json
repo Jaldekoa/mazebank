@@ -1,0 +1,26 @@
+{
+  "name": "mazebank",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node --env-file=.env src/index.js",
+    "dev": "node --env-file=.env --watch src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jaldekoa/mazebank.git"
+  },
+  "keywords": [],
+  "author": "Jon Aldekoa",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Jaldekoa/mazebank/issues"
+  },
+  "homepage": "https://github.com/Jaldekoa/mazebank#readme",
+  "dependencies": {
+    "express": "^5.2.1",
+    "sequelize": "^6.37.8"
+  }
+}
