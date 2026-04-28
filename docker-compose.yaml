@@ -2,7 +2,7 @@ services:
   servidor-mazebank:
     image: postgres:16
     container_name: servidor-mazebank
-    restart: always
+    restart: unless-stopped
     environment:
       - POSTGRES_DB=${DB_NAME}
       - POSTGRES_USER=${DB_USER}
@@ -17,7 +17,7 @@ services:
   gestor-pgadmin:
     image: dpage/pgadmin4
     container_name: gestor-pgadmin
-    restart: always
+    restart: unless-stopped
     environment:
       - PGADMIN_DEFAULT_EMAIL=${PGADMIN_EMAIL}
       - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_PASSWORD}
