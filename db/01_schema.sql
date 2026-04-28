@@ -35,18 +35,21 @@ CREATE TABLE IF NOT EXISTS public."Transactions"
 );
 
 ALTER TABLE IF EXISTS public."Accounts"
-    ADD FOREIGN KEY ("userId")
-    REFERENCES public."Users" (id) MATCH SIMPLE
+    ADD CONSTRAINT fk_user_account FOREIGN KEY ("userId")
+    REFERENCES public."Users" (id)
     ON UPDATE NO ACTION
-    ON DELETE NO ACTION
-    NOT VALID;
-
+    ON DELETE CASCADE;
 
 ALTER TABLE IF EXISTS public."Transactions"
-    ADD FOREIGN KEY ("senderAccountId", "receiverAccountId")
-    REFERENCES public."Accounts" (id, id) MATCH SIMPLE
+    ADD CONSTRAINT fk_sender FOREIGN KEY ("senderAccountId")
+    REFERENCES public."Accounts" (id);
     ON UPDATE NO ACTION
-    ON DELETE NO ACTION
-    NOT VALID;
+    ON DELETE NO ACTION;
+
+ALTER TABLE IF EXISTS public."Transactions"
+    ADD CONSTRAINT fk_receiver FOREIGN KEY ("receiverAccountId")
+    REFERENCES public."Accounts" (id);
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION;
 
 END;
