@@ -1,8 +1,10 @@
 import express from "express";
+import { checkDB, syncDB } from "./config/db.js";
 
 const PORT = process.env.PORT || 3000;
 const app = express();
 
+app.use(express.urlencoded());
 app.use(express.json());
 
 app.get("/health", (req, res) => {
@@ -14,5 +16,5 @@ app.get("/error", (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Servidor conectado correctamente por el puerto ${PORT}`);
+  console.log(`Server successfully connected via port ${PORT}`);
 });
