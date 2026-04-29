@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node --env-file=.env src/index.js",
-    "dev": "node --env-file=.env --watch src/index.js"
+    "dev": "node --env-file=.env --watch-path=./src  --watch src/index.js"
   },
   "repository": {
     "type": "git",
