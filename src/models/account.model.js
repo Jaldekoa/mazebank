@@ -2,7 +2,7 @@ import { DataTypes, Sequelize } from "sequelize";
 import sequelize from "../config/db.js";
 
 const AccountModel = sequelize.define(
-  "Account",
+  "Accounts",
   {
     id: {
       type: DataTypes.INTEGER,
@@ -11,7 +11,7 @@ const AccountModel = sequelize.define(
     },
     userId: {
       type: DataTypes.INTEGER,
-      references: { model: "user", key: "id" },
+      references: { model: "Users", key: "id" },
       allowNull: false,
     },
     accountNumber: {
@@ -19,11 +19,11 @@ const AccountModel = sequelize.define(
       allowNull: false,
     },
     balance: {
-      type: DataTypes.DECIMAL(null, 2),
+      type: DataTypes.DECIMAL(10, 2),
       allowNull: false,
     },
   },
-  { tableName: "account", timestamps: false },
+  { tableName: "Accounts", timestamps: true },
 );
 
 export default AccountModel;

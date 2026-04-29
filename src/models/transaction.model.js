@@ -2,33 +2,38 @@ import { DataTypes, Sequelize } from "sequelize";
 import sequelize from "../config/db.js";
 
 const TransactionsModel = sequelize.define(
-  "Account",
+  "Transactions",
   {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
     },
-    senderIAccountId: {
+    accountId: {
       type: DataTypes.INTEGER,
-      references: { model: "account", key: "id" },
+      references: { model: "Accounts", key: "id" },
       allowNull: false,
     },
-    receiverIAccountId: {
+    senderAccountId: {
       type: DataTypes.INTEGER,
-      references: { model: "account", key: "id" },
+      references: { model: "Accounts", key: "id" },
+      allowNull: false,
+    },
+    receiverAccountId: {
+      type: DataTypes.INTEGER,
+      references: { model: "Accounts", key: "id" },
       allowNull: false,
     },
     amount: {
-      type: DataTypes.DECIMAL(null, 2),
+      type: DataTypes.DECIMAL(10, 2),
       allowNull: false,
     },
     type: {
-      type: DataTypes.ENUM("depósito", "retiro", "transferencia"),
+      type: DataTypes.ENUM("TRANSFER", "INTERNAL"),
       allowNull: false,
     },
   },
-  { tableName: "transactions", timestamps: false },
+  { tableName: "Transactions", timestamps: true },
 );
 
 export default TransactionsModel;

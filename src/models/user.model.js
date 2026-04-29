@@ -2,7 +2,7 @@ import { DataTypes, Sequelize } from "sequelize";
 import sequelize from "../config/db.js";
 
 const UserModel = sequelize.define(
-  "User",
+  "Users",
   {
     id: {
       type: DataTypes.INTEGER,
@@ -34,7 +34,7 @@ const UserModel = sequelize.define(
       allowNull: true,
     },
   },
-  { tableName: "user", timestamps: false },
+  { tableName: "Users", timestamps: true },
 );
 
 export default UserModel;
