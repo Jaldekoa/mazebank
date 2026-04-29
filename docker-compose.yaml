@@ -1,6 +1,6 @@
 services:
   servidor-mazebank:
-    image: postgres:16
+    image: postgres:latest
     container_name: servidor-mazebank
     restart: unless-stopped
     environment:
@@ -10,6 +10,7 @@ services:
     ports:
       - "${DB_PORT}:5432"
     volumes:
+      - db-data:/var/lib/postgresql
       - ./db:/docker-entrypoint-initdb.d
     networks:
       - mazebank-network
@@ -31,3 +32,6 @@ services:
 networks:
   mazebank-network:
     driver: bridge
+
+volumes:
+  db-data:
