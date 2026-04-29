@@ -1,7 +1,7 @@
 import { Router } from "express";
-import userRouter from "./user.routes";
-import accountRouter from "./account.routes";
-import transactionRouter from "./transaction.routes";
+import userRouter from "./user.routes.js";
+import accountRouter from "./account.routes.js";
+import transactionRouter from "./transaction.routes.js";
 
 const apiRouter = Router();
 
