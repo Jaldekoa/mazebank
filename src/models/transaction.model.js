@@ -9,27 +9,26 @@ const TransactionsModel = sequelize.define(
       primaryKey: true,
       autoIncrement: true,
     },
-    accountId: {
-      type: DataTypes.INTEGER,
-      references: { model: "Accounts", key: "id" },
-      allowNull: false,
-    },
     senderAccountId: {
       type: DataTypes.INTEGER,
       references: { model: "Accounts", key: "id" },
-      allowNull: false,
+      allowNull: true,
     },
     receiverAccountId: {
       type: DataTypes.INTEGER,
       references: { model: "Accounts", key: "id" },
-      allowNull: false,
+      allowNull: true,
     },
     amount: {
       type: DataTypes.DECIMAL(10, 2),
       allowNull: false,
     },
+    details: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
     type: {
-      type: DataTypes.ENUM("TRANSFER", "INTERNAL"),
+      type: DataTypes.ENUM("DEPOSIT", "WITHDRAWAL", "TRANSFER"),
       allowNull: false,
     },
   },
