@@ -14,6 +14,10 @@ const AccountModel = sequelize.define(
       references: { model: "Users", key: "id" },
       allowNull: false,
     },
+    accountName: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     accountNumber: {
       type: DataTypes.STRING,
       allowNull: false,
