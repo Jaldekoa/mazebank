@@ -1,4 +1,5 @@
 import { Sequelize } from "sequelize";
+import { logerror } from "../utils/utils.js";
 
 const { DB_NAME, DB_USER, DB_PASSWORD, DB_HOST, DB_PORT } = process.env;
 
@@ -12,7 +13,7 @@ async function checkDB() {
   try {
     await sequelize.authenticate();
   } catch (error) {
-    console.error("An error has occurred while connecting to the database: ", error);
+    logerror.red("❌ An error has occurred while connecting to the database: ", error);
   }
 }
 
@@ -20,7 +21,7 @@ async function syncDB() {
   try {
     await sequelize.sync({ alter: true });
   } catch (error) {
-    console.error("Synchronization failed: ", error);
+    logerror.red("❌ Synchronization failed: ", error);
   }
 }
 
