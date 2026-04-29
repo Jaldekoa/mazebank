@@ -1,6 +1,6 @@
 BEGIN;
 
--- 1. POBLAR TABLA Users (10 usuarios)
+-- 1. POBLAR TABLA Users (Se mantiene igual)
 INSERT INTO public."Users" (id, dni, password, "firstName", "lastName", email, "phoneNumber", "createdAt", "updatedAt")
 VALUES
 (1, '12345678A', 'hash1', 'Jon', 'Snow', 'jon@wall.com', '600000001', NOW(), NOW()),
@@ -12,41 +12,87 @@ VALUES
 (7, '78901234G', 'hash7', 'Cersei', 'Lannister', 'cersei@ironthrone.com', '600000007', NOW(), NOW()),
 (8, '89012345H', 'hash8', 'Samwell', 'Tarly', 'sam@citadel.com', '600000008', NOW(), NOW()),
 (9, '90123456I', 'hash9', 'Brienne', 'Tarth', 'brienne@tarth.com', '600000009', NOW(), NOW()),
-(10, '01234567J', 'hash10', 'Jorah', 'Mormont', 'jorah@friendzone.com', '600000010', NOW(), NOW());
+(10, '01234567J', 'hash10', 'Jorah', 'Mormont', 'jorah@friendzone.com', '600000010', NOW(), NOW()),
+(11, '11223344K', 'hash11', 'Theon', 'Greyjoy', 'theon@ironislands.com', '600000011', NOW(), NOW()),
+(12, '22334455L', 'hash12', 'Margaery', 'Tyrell', 'margaery@highgarden.com', '600000012', NOW(), NOW()),
+(13, '33445566M', 'hash13', 'Davos', 'Seaworth', 'davos@onion.com', '600000013', NOW(), NOW()),
+(14, '44556677N', 'hash14', 'Petyr', 'Baelish', 'littlefinger@eyrie.com', '600000014', NOW(), NOW()),
+(15, '55667788O', 'hash15', 'Varys', 'TheSpider', 'spider@whispers.com', '600000015', NOW(), NOW()),
+(16, '66778899P', 'hash16', 'Tormund', 'Giantsbane', 'tormund@beyondwall.com', '600000016', NOW(), NOW()),
+(17, '77889900Q', 'hash17', 'Gendry', 'Baratheon', 'gendry@bastard.com', '600000017', NOW(), NOW()),
+(18, '88990011R', 'hash18', 'Bronn', 'Blackwater', 'bronn@sellsword.com', '600000018', NOW(), NOW()),
+(19, '99001122S', 'hash19', 'Sandor', 'Clegane', 'hound@chicken.com', '600000019', NOW(), NOW()),
+(20, '00112233T', 'hash20', 'Ramsay', 'Bolton', 'ramsay@dreadfort.com', '600000020', NOW(), NOW());
 
--- 2. POBLAR TABLA Accounts (Múltiples cuentas por usuario)
-INSERT INTO public."Accounts" (id, "userId", "accountNumber", balance, "createdAt", "updatedAt")
+-- 2. POBLAR TABLA Accounts (Con accountName)
+INSERT INTO public."Accounts" (id, "userId", "accountName", "accountNumber", balance, "createdAt", "updatedAt")
 VALUES
-(1, 1, 'ES010001', 1500.50, NOW(), NOW()), -- Cuenta 1 Jon
-(2, 1, 'ES010002', 500.00, NOW(), NOW()),  -- Cuenta 2 Jon
-(3, 2, 'ES020001', 10000.00, NOW(), NOW()),-- Daenerys
-(4, 3, 'ES030001', 2500.00, NOW(), NOW()), -- Tyrion
-(5, 3, 'ES030002', 300.00, NOW(), NOW()),  -- Cuenta Ahorro Tyrion
-(6, 4, 'ES040001', 120.00, NOW(), NOW()),  -- Arya
-(7, 5, 'ES050001', 4000.00, NOW(), NOW()), -- Sansa
-(8, 6, 'ES060001', 2000.00, NOW(), NOW()), -- Jaime
-(9, 7, 'ES070001', 50000.00, NOW(), NOW()),-- Cersei
-(10, 8, 'ES080001', 800.00, NOW(), NOW()), -- Samwell
-(11, 9, 'ES090001', 1500.00, NOW(), NOW()),-- Brienne
-(12, 10, 'ES100001', 450.00, NOW(), NOW());-- Jorah
+(1, 1, 'Cuenta Corriente', 'ES010001', 1500.50, NOW(), NOW()),
+(2, 1, 'Ahorros Invernales', 'ES010002', 500.00, NOW(), NOW()),
+(3, 2, 'Tesoro Real', 'ES020001', 10000.00, NOW(), NOW()),
+(4, 3, 'Gastos de Mano', 'ES030001', 2500.00, NOW(), NOW()),
+(5, 3, 'Reserva Casterly', 'ES030002', 300.00, NOW(), NOW()),
+(6, 4, 'Fondo de Viaje', 'ES040001', 120.00, NOW(), NOW()),
+(7, 5, 'Nómina Invernalia', 'ES050001', 4000.00, NOW(), NOW()),
+(8, 6, 'Guardia Real Fund', 'ES060001', 2000.00, NOW(), NOW()),
+(9, 7, 'Crédito de Hierro', 'ES070001', 50000.00, NOW(), NOW()),
+(10, 8, 'Biblioteca Beca', 'ES080001', 800.00, NOW(), NOW()),
+(11, 9, 'Fondo de Armadura', 'ES090001', 1500.00, NOW(), NOW()),
+(12, 10, 'Fondo de Lealtad', 'ES100001', 450.00, NOW(), NOW()),
+(13, 11, 'Cuenta Islas', 'ES110001', 50.00, NOW(), NOW()),
+(14, 12, 'Fondos Highgarden', 'ES120001', 15000.00, NOW(), NOW()),
+(15, 12, 'Ahorros Flores', 'ES120002', 25000.00, NOW(), NOW()),
+(16, 13, 'Fondo de Contrabando', 'ES130001', 1200.00, NOW(), NOW()),
+(17, 14, 'Inversiones Dedo', 'ES140001', 8000.00, NOW(), NOW()),
+(18, 15, 'Red de Pajaritos', 'ES150001', 9500.00, NOW(), NOW()),
+(19, 16, 'Fondo Leche Gigante', 'ES160001', 10.00, NOW(), NOW()),
+(20, 17, 'Nómina Herrería', 'ES170001', 3000.00, NOW(), NOW()),
+(21, 18, 'Fondo Mercenario', 'ES180001', 4500.00, NOW(), NOW()),
+(22, 19, 'Fondo de Pollos', 'ES190001', 200.00, NOW(), NOW()),
+(23, 20, 'Fondo de Caza', 'ES200001', 6000.00, NOW(), NOW()),
+(24, 14, 'Caja B Meñique', 'ES140002', 45000.00, NOW(), NOW());
 
--- 3. POBLAR TABLA Transactions
--- Nota: "accountId" suele referirse a la cuenta dueña del registro del extracto.
--- "sender" y "receiver" indican el flujo del dinero.
-INSERT INTO public."Transactions" ("accountId", "senderAccountId", "receiverAccountId", amount, type, "createdAt", "updatedAt")
+-- 3. POBLAR TABLA Transactions (Con details)
+INSERT INTO public."Transactions" ("senderAccountId", "receiverAccountId", amount, details, type, "createdAt", "updatedAt")
 VALUES
-(1, 1, 3, 100.00, 'TRANSFER', NOW(), NOW()), -- Jon envía a Daenerys
-(3, 1, 3, 100.00, 'TRANSFER', NOW(), NOW()), -- Registro para Daenerys de la misma trans
-(1, 1, 2, 50.00, 'INTERNAL', NOW(), NOW()),  -- Jon mueve entre sus cuentas (1 a 2)
-(2, 1, 2, 50.00, 'INTERNAL', NOW(), NOW()),
-(4, 4, 1, 1000.00, 'TRANSFER', NOW(), NOW()),-- Tyrion paga a Jon
-(9, 9, 8, 500.00, 'TRANSFER', NOW(), NOW()), -- Cersei paga a Jaime
-(12, 12, 3, 20.00, 'TRANSFER', NOW(), NOW()),-- Jorah a Daenerys
-(7, 7, 6, 200.00, 'TRANSFER', NOW(), NOW()), -- Sansa a Arya
-(5, 5, 4, 150.00, 'INTERNAL', NOW(), NOW()), -- Tyrion mueve cuenta 2 a cuenta 1
-(10, 10, 11, 5.00, 'TRANSFER', NOW(), NOW());-- Samwell a Brienne
+-- Depósitos
+(NULL, 1, 1000.00, 'Ingreso nómina Guardia de la Noche', 'DEPOSIT', NOW(), NOW()),
+(NULL, 3, 5000.00, 'Subvención por dragones', 'DEPOSIT', NOW(), NOW()),
+(NULL, 9, 25000.00, 'Impuestos de Desembarco', 'DEPOSIT', NOW(), NOW()),
+(NULL, 14, 5000.00, 'Inversión inicial Burdel', 'DEPOSIT', NOW(), NOW()),
+(NULL, 21, 1000.00, 'Pago por servicios de escolta', 'DEPOSIT', NOW(), NOW()),
 
--- Ajustar los generadores de secuencias (serial) para que los próximos inserts manuales no fallen
+-- Retiros
+(1, NULL, 50.00, 'Cajero automático El Muro', 'WITHDRAWAL', NOW(), NOW()),
+(4, NULL, 100.00, 'Cena en La Posada de la Encrucijada', 'WITHDRAWAL', NOW(), NOW()),
+(7, NULL, 200.00, 'Compras en el mercado de Invernalia', 'WITHDRAWAL', NOW(), NOW()),
+(23, NULL, 500.00, 'Gasto en suministros de tortura', 'WITHDRAWAL', NOW(), NOW()),
+(13, NULL, 20.00, 'Retirada para barcos', 'WITHDRAWAL', NOW(), NOW()),
+(18, NULL, 1500.00, 'Pago a red de informantes', 'WITHDRAWAL', NOW(), NOW()),
+
+-- Transferencias entre usuarios
+(1, 3, 100.00, 'Regalo de boda', 'TRANSFER', NOW(), NOW()),
+(4, 1, 1000.00, 'Pago de deuda pendiente', 'TRANSFER', NOW(), NOW()),
+(9, 8, 500.00, 'Donación a la Ciudadela', 'TRANSFER', NOW(), NOW()),
+(12, 3, 20.00, 'Préstamo pequeño', 'TRANSFER', NOW(), NOW()),
+(7, 6, 200.00, 'Pago curso de costura', 'TRANSFER', NOW(), NOW()),
+(10, 11, 5.00, 'Propina caballeresca', 'TRANSFER', NOW(), NOW()),
+
+-- Transferencias propias (Inter-cuentas)
+(1, 2, 50.00, 'Traspaso a cuenta de ahorro', 'TRANSFER', NOW(), NOW()),
+(4, 5, 150.00, 'Ahorro mensual', 'TRANSFER', NOW(), NOW()),
+
+-- Transferencias variadas
+(14, 18, 2000.00, 'Pago por información secreta', 'TRANSFER', NOW(), NOW()),
+(15, 14, 10000.00, 'Acuerdo matrimonial Tyrell-Baelish', 'TRANSFER', NOW(), NOW()),
+(17, 24, 500.00, 'Mover fondos a cuenta secundaria', 'TRANSFER', NOW(), NOW()),
+(21, 19, 150.00, 'Pago apuesta de pelea', 'TRANSFER', NOW(), NOW()),
+(20, 11, 100.00, 'Donación para reconstrucción', 'TRANSFER', NOW(), NOW()),
+(3, 15, 2500.00, 'Subvención para flota naval', 'TRANSFER', NOW(), NOW()),
+(9, 21, 3000.00, 'Pago a mercenarios por protección', 'TRANSFER', NOW(), NOW()),
+(8, 9, 100.00, 'Intereses préstamo real', 'TRANSFER', NOW(), NOW());
+
+-- 4. Ajustar generadores de secuencias
 SELECT setval(pg_get_serial_sequence('public."Users"', 'id'), (SELECT MAX(id) FROM public."Users"));
 SELECT setval(pg_get_serial_sequence('public."Accounts"', 'id'), (SELECT MAX(id) FROM public."Accounts"));
 SELECT setval(pg_get_serial_sequence('public."Transactions"', 'id'), (SELECT MAX(id) FROM public."Transactions"));
