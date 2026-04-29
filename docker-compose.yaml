@@ -33,9 +33,13 @@ services:
     image: dpage/pgadmin4
     container_name: ${PGADMIN_HOST}
     restart: unless-stopped
+    user: root
     environment:
       - PGADMIN_DEFAULT_EMAIL=${PGADMIN_EMAIL}
       - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_PASSWORD}
+      - PGADMIN_CONFIG_SERVER_MODE=False
+    volumes:
+      - ./servers.json:/pgadmin4/servers.json
     ports:
       - "${PGADMIN_PORT}:80"
     networks:
