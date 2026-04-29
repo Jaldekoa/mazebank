@@ -1,37 +1,52 @@
 services:
-  servidor-mazebank:
+  app:
+    container_name: ${APP_HOST}
+    build: .
+    restart: unless-stopped
+    ports:
+      - "${APP_PORT}:3000"
+    volumes:
+      - .:/app
+      - node_modules:/app/node_modules
+    networks:
+      - postgres-network
+    depends_on:
+      - postgres
+
+  postgres:
     image: postgres:latest
-    container_name: servidor-mazebank
+    container_name: ${POSTGRES_HOST}
     restart: unless-stopped
     environment:
-      - POSTGRES_DB=${DB_NAME}
-      - POSTGRES_USER=${DB_USER}
-      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_NAME}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     ports:
-      - "${DB_PORT}:5432"
+      - "${POSTGRES_PORT}:5432"
     volumes:
       - db-data:/var/lib/postgresql
       - ./db:/docker-entrypoint-initdb.d
     networks:
-      - mazebank-network
+      - postgres-network
 
-  gestor-pgadmin:
+  pgadmin:
     image: dpage/pgadmin4
-    container_name: gestor-pgadmin
+    container_name: ${PGADMIN_HOST}
     restart: unless-stopped
     environment:
       - PGADMIN_DEFAULT_EMAIL=${PGADMIN_EMAIL}
       - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_PASSWORD}
     ports:
-      - "5050:80"
+      - "${PGADMIN_PORT}:80"
     networks:
-      - mazebank-network
+      - postgres-network
     depends_on:
-      - servidor-mazebank
+      - postgres
 
 networks:
-  mazebank-network:
+  postgres-network:
     driver: bridge
 
 volumes:
+  node_modules:
   db-data:
