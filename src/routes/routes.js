@@ -15,7 +15,7 @@ const router = Router();
  *   securitySchemes:
  *     BearerAuth:
  *       type: http
- *       scheme: bearer
+ *       scheme: Bearer
  *       bearerFormat: JWT
  *       description: Ingrese su token JWT para acceder a los endpoints protegidos.
  */

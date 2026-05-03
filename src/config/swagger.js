@@ -17,14 +17,14 @@ const options = {
     ],
     components: {
       securitySchemes: {
-        bearerAuth: {
+        BearerAuth: {
           type: "http",
           scheme: "Bearer",
-          bearerFormat: "JWT",
+          BearerFormat: "JWT",
         },
       },
     },
-    security: [{ bearerAuth: [] }],
+    security: [{ BearerAuth: [] }],
   },
   apis: ["./src/routes/*.js", "./src/routes/api/*.js"],
 };
