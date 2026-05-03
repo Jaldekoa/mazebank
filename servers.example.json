@@ -1,0 +1,15 @@
+{
+  "Servers": {
+    "1": {
+      "Name": "MazeBank DB",
+      "Group": "Servers",
+      "Host": "servidor-mazebank",
+      "Port": 5432,
+      "MaintenanceDB": "mazebank_db",
+      "Username": "TU USER AQUÍ",
+      "Password": "TU PASSWORD AQUÍ",
+      "SavePassword": true,
+      "SSLMode": "prefer"
+    }
+  }
+}
