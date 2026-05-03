@@ -6,7 +6,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node --env-file=.env src/index.js",
-    "dev": "node --env-file=.env --watch-path=./src  --watch src/index.js"
+    "dev": "node --env-file=.env --watch-path=./src  --watch src/index.js",
+    "docs": "jsdoc -c jsdoc.json"
   },
   "repository": {
     "type": "git",
