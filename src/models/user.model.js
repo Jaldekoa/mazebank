@@ -34,7 +34,12 @@ const UserModel = sequelize.define(
       allowNull: true,
     },
   },
-  { tableName: "Users", timestamps: true },
+  {
+    tableName: "Users",
+    timestamps: true,
+    defaultScope: { attributes: { exclude: ["password"] } },
+    scopes: { withPassword: { attributes: {} } },
+  },
 );
 
 export default UserModel;
