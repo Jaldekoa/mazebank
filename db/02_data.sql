@@ -3,26 +3,26 @@ BEGIN;
 -- 1. POBLAR TABLA Users (Se mantiene igual)
 INSERT INTO public."Users" (id, dni, password, "firstName", "lastName", email, "phoneNumber", "createdAt", "updatedAt")
 VALUES
-(1, '12345678A', 'hash1', 'Jon', 'Snow', 'jon@wall.com', '600000001', NOW(), NOW()),
-(2, '23456789B', 'hash2', 'Daenerys', 'Targaryen', 'khaleesi@dragons.com', '600000002', NOW(), NOW()),
-(3, '34567890C', 'hash3', 'Tyrion', 'Lannister', 'tyrion@casterly.com', '600000003', NOW(), NOW()),
-(4, '45678901D', 'hash4', 'Arya', 'Stark', 'noone@braavos.com', '600000004', NOW(), NOW()),
-(5, '56789012E', 'hash5', 'Sansa', 'Stark', 'sansa@winterfell.com', '600000005', NOW(), NOW()),
-(6, '67890123F', 'hash6', 'Jaime', 'Lannister', 'jaime@kingslanding.com', '600000006', NOW(), NOW()),
-(7, '78901234G', 'hash7', 'Cersei', 'Lannister', 'cersei@ironthrone.com', '600000007', NOW(), NOW()),
-(8, '89012345H', 'hash8', 'Samwell', 'Tarly', 'sam@citadel.com', '600000008', NOW(), NOW()),
-(9, '90123456I', 'hash9', 'Brienne', 'Tarth', 'brienne@tarth.com', '600000009', NOW(), NOW()),
-(10, '01234567J', 'hash10', 'Jorah', 'Mormont', 'jorah@friendzone.com', '600000010', NOW(), NOW()),
-(11, '11223344K', 'hash11', 'Theon', 'Greyjoy', 'theon@ironislands.com', '600000011', NOW(), NOW()),
-(12, '22334455L', 'hash12', 'Margaery', 'Tyrell', 'margaery@highgarden.com', '600000012', NOW(), NOW()),
-(13, '33445566M', 'hash13', 'Davos', 'Seaworth', 'davos@onion.com', '600000013', NOW(), NOW()),
-(14, '44556677N', 'hash14', 'Petyr', 'Baelish', 'littlefinger@eyrie.com', '600000014', NOW(), NOW()),
-(15, '55667788O', 'hash15', 'Varys', 'TheSpider', 'spider@whispers.com', '600000015', NOW(), NOW()),
-(16, '66778899P', 'hash16', 'Tormund', 'Giantsbane', 'tormund@beyondwall.com', '600000016', NOW(), NOW()),
-(17, '77889900Q', 'hash17', 'Gendry', 'Baratheon', 'gendry@bastard.com', '600000017', NOW(), NOW()),
-(18, '88990011R', 'hash18', 'Bronn', 'Blackwater', 'bronn@sellsword.com', '600000018', NOW(), NOW()),
-(19, '99001122S', 'hash19', 'Sandor', 'Clegane', 'hound@chicken.com', '600000019', NOW(), NOW()),
-(20, '00112233T', 'hash20', 'Ramsay', 'Bolton', 'ramsay@dreadfort.com', '600000020', NOW(), NOW());
+(1, '12345678A', '$2b$10$zYI5JSGl3o7ecHWatUwFSe5c5xNkCVHhmYiC8RIl3ZCLgs1EFYiXa', 'Jon', 'Snow', 'jon@wall.com', '600000001', NOW(), NOW()),
+(2, '23456789B', '$2b$10$zYI5JSGl3o7ecHWatUwFSe5c5xNkCVHhmYiC8RIl3ZCLgs1EFYiXa', 'Daenerys', 'Targaryen', 'khaleesi@dragons.com', '600000002', NOW(), NOW()),
+(3, '34567890C', '$2b$10$zYI5JSGl3o7ecHWatUwFSe5c5xNkCVHhmYiC8RIl3ZCLgs1EFYiXa', 'Tyrion', 'Lannister', 'tyrion@casterly.com', '600000003', NOW(), NOW()),
+(4, '45678901D', '$2b$10$zYI5JSGl3o7ecHWatUwFSe5c5xNkCVHhmYiC8RIl3ZCLgs1EFYiXa', 'Arya', 'Stark', 'noone@braavos.com', '600000004', NOW(), NOW()),
+(5, '56789012E', '$2b$10$zYI5JSGl3o7ecHWatUwFSe5c5xNkCVHhmYiC8RIl3ZCLgs1EFYiXa', 'Sansa', 'Stark', 'sansa@winterfell.com', '600000005', NOW(), NOW()),
+(6, '67890123F', '$2b$10$zYI5JSGl3o7ecHWatUwFSe5c5xNkCVHhmYiC8RIl3ZCLgs1EFYiXa', 'Jaime', 'Lannister', 'jaime@kingslanding.com', '600000006', NOW(), NOW()),
+(7, '78901234G', '$2b$10$zYI5JSGl3o7ecHWatUwFSe5c5xNkCVHhmYiC8RIl3ZCLgs1EFYiXa', 'Cersei', 'Lannister', 'cersei@ironthrone.com', '600000007', NOW(), NOW()),
+(8, '89012345H', '$2b$10$zYI5JSGl3o7ecHWatUwFSe5c5xNkCVHhmYiC8RIl3ZCLgs1EFYiXa', 'Samwell', 'Tarly', 'sam@citadel.com', '600000008', NOW(), NOW()),
+(9, '90123456I', '$2b$10$zYI5JSGl3o7ecHWatUwFSe5c5xNkCVHhmYiC8RIl3ZCLgs1EFYiXa', 'Brienne', 'Tarth', 'brienne@tarth.com', '600000009', NOW(), NOW()),
+(10, '01234567J', '$2b$10$zYI5JSGl3o7ecHWatUwFSe5c5xNkCVHhmYiC8RIl3ZCLgs1EFYiXa', 'Jorah', 'Mormont', 'jorah@friendzone.com', '600000010', NOW(), NOW()),
+(11, '11223344K', '$2b$10$zYI5JSGl3o7ecHWatUwFSe5c5xNkCVHhmYiC8RIl3ZCLgs1EFYiXa', 'Theon', 'Greyjoy', 'theon@ironislands.com', '600000011', NOW(), NOW()),
+(12, '22334455L', '$2b$10$zYI5JSGl3o7ecHWatUwFSe5c5xNkCVHhmYiC8RIl3ZCLgs1EFYiXa', 'Margaery', 'Tyrell', 'margaery@highgarden.com', '600000012', NOW(), NOW()),
+(13, '33445566M', '$2b$10$zYI5JSGl3o7ecHWatUwFSe5c5xNkCVHhmYiC8RIl3ZCLgs1EFYiXa', 'Davos', 'Seaworth', 'davos@onion.com', '600000013', NOW(), NOW()),
+(14, '44556677N', '$2b$10$zYI5JSGl3o7ecHWatUwFSe5c5xNkCVHhmYiC8RIl3ZCLgs1EFYiXa', 'Petyr', 'Baelish', 'littlefinger@eyrie.com', '600000014', NOW(), NOW()),
+(15, '55667788O', '$2b$10$zYI5JSGl3o7ecHWatUwFSe5c5xNkCVHhmYiC8RIl3ZCLgs1EFYiXa', 'Varys', 'TheSpider', 'spider@whispers.com', '600000015', NOW(), NOW()),
+(16, '66778899P', '$2b$10$zYI5JSGl3o7ecHWatUwFSe5c5xNkCVHhmYiC8RIl3ZCLgs1EFYiXa', 'Tormund', 'Giantsbane', 'tormund@beyondwall.com', '600000016', NOW(), NOW()),
+(17, '77889900Q', '$2b$10$zYI5JSGl3o7ecHWatUwFSe5c5xNkCVHhmYiC8RIl3ZCLgs1EFYiXa', 'Gendry', 'Baratheon', 'gendry@bastard.com', '600000017', NOW(), NOW()),
+(18, '88990011R', '$2b$10$zYI5JSGl3o7ecHWatUwFSe5c5xNkCVHhmYiC8RIl3ZCLgs1EFYiXa', 'Bronn', 'Blackwater', 'bronn@sellsword.com', '600000018', NOW(), NOW()),
+(19, '99001122S', '$2b$10$zYI5JSGl3o7ecHWatUwFSe5c5xNkCVHhmYiC8RIl3ZCLgs1EFYiXa', 'Sandor', 'Clegane', 'hound@chicken.com', '600000019', NOW(), NOW()),
+(20, '00112233T', '$2b$10$zYI5JSGl3o7ecHWatUwFSe5c5xNkCVHhmYiC8RIl3ZCLgs1EFYiXa', 'Ramsay', 'Bolton', 'ramsay@dreadfort.com', '600000020', NOW(), NOW());
 
 -- 2. POBLAR TABLA Accounts (Con accountName)
 INSERT INTO public."Accounts" (id, "userId", "accountName", "accountNumber", balance, "createdAt", "updatedAt")
