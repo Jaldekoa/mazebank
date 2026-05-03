@@ -2,41 +2,51 @@ import transactionServices from "../../services/transaction.service.js";
 
 async function makeDeposit(req, res) { 
   try {
-    const { receiverAccountId, amount, details } = req.body;
-    const transaction = await transactionServices.createTransaction(null, receiverAccountId, amount, details);
-    return res.status(201).json(transaction);
-
+    const { receiverAccountNumber, amount, details } = req.body;
+    const transaction = await transactionServices.createTransaction({
+        receiverAccountNumber, amount, details, type: 'DEPOSIT', userId: req.user.id 
+    });
+    res.status(201).json(transaction);
   } catch (error) {
-    return res.status(400).json();
-  };
-};
+    res.status(400).json({ message: error.message });
+  }
+}
 
 async function makeWithdraw(req, res) {
   try {
-    const { senderAccountId, amount, details } = req.body;
-    const transaction = await transactionServices.createTransaction(senderAccountId, null, amount, details);
-    return res.status(201).json(transaction);
-
+    const { senderAccountNumber, amount, details } = req.body;
+    const transaction = await transactionServices.createTransaction({
+        senderAccountNumber, amount, details, type: 'WITHDRAWAL', userId: req.user.id 
+    });
+    res.status(201).json(transaction);
   } catch (error) {
-    return res.status(400).json();
-  };
- };
+    res.status(400).json({ message: error.message });
+  }
+}
 
 async function makeTransfer(req, res) { 
   try {
-    const { senderAccountId, receiverAccountId, amount, details } = req.body;
-    const transaction = await transactionServices.createTransaction(senderAccountId, receiverAccountId, amount, details);
-    return res.status(201).json(transaction);
-
+    const { senderAccountNumber, receiverAccountNumber, amount, details } = req.body;
+    const transaction = await transactionServices.createTransaction({
+        senderAccountNumber, receiverAccountNumber, amount, details, type: 'TRANSFER', userId: req.user.id 
+    });
+    res.status(201).json(transaction);
   } catch (error) {
-    return res.status(400).json();
-  };
-};
-
-async function getAllTransactionsForAccount(req, res) {
-  const data = await transactionServices.getAllTransactionsForAccount(req.params.userId);
-  return res.status(200).json(data);
+    res.status(400).json({ message: error.message });
+  }
 }
 
-export const transactionController = { getAllTransactionsForAccount, makeDeposit, makeWithdraw, makeTransfer };
-export default transactionController;
+async function getAllTransactionsForAccount(req, res) {
+  try {
+    const { accountNumber } = req.params;
+    const { limit, page, type, sort } = req.query;
+
+    const data = await transactionServices.getAllTransactionsForAccount(req.user.id, accountNumber, { limit, page, type, sort });
+    res.status(200).json(data);
+    
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+}
+
+export default { getAllTransactionsForAccount, makeDeposit, makeWithdraw, makeTransfer };
