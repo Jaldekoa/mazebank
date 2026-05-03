@@ -20,16 +20,12 @@ async function createTransaction(senderAccountId, receiverAccountId, amount, det
   } catch (error) {
     await transaction.rollback();
   };
-
 };
 
 async function getAllTransactionsForAccount(accountId) {
   const transactions = await TransactionsModel.findAll({
     where: {
-      [Op.or]: [
-        { senderAccountId: accountId },
-        { receiverAccountId: accountId },
-      ],
+      [Op.or]: [{ senderAccountId: accountId }, { receiverAccountId: accountId }],
     },
   });
   return transactions;
