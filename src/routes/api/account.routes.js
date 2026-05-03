@@ -7,6 +7,6 @@ accountRouter.get("/", accountController.getAllUserAccounts);
 accountRouter.post("/", accountController.createNewAccount);
 accountRouter.get("/:id", accountController.getAccountInfo);
 accountRouter.patch("/:id", accountController.changeAccountInfo);
-accountRouter.dekete("/:id", accountController.deleteAccount);
+accountRouter.delete("/:id", accountController.deleteAccount);
 
 export default accountRouter;

@@ -4,5 +4,8 @@ import transactionController from "../../controllers/api/transaction.controller.
 const transactionRouter = Router();
 
 transactionRouter.get("/:userId", transactionController.getAllTransactionsForAccount);
+transactionRouter.post("/deposit", transactionController.makeDeposit);
+transactionRouter.post("/withdraw", transactionController.makeWithdraw);
+transactionRouter.post("/transfer", transactionController.makeTransfer);
 
 export default transactionRouter;

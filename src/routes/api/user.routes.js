@@ -8,5 +8,6 @@ userRouter.post("/login", userController.login);
 
 userRouter.get("/me", userController.getMyUserInfo);
 userRouter.patch("/me", userController.changeMyUserInfo);
+userRouter.delete("/me", userController.deleteMyUser);
 
 export default userRouter;
