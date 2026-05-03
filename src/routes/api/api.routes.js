@@ -5,7 +5,6 @@ import transactionRouter from "./transaction.routes.js";
 
 const apiRouter = Router();
 apiRouter.use("/user", userRouter);
-apiRouter.post("/auth", userRouter);
 apiRouter.use("/account", accountRouter);
 apiRouter.use("/transaction", transactionRouter);
 
