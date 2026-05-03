@@ -1,35 +1,83 @@
 import sequelize from "../config/db.js";
 import { AccountModel, TransactionsModel } from "../models/index.js";
-import { log } from "../utils/utils.js";
 import { Op } from "sequelize";
 
-async function createTransaction(senderAccountId, receiverAccountId, amount, details) {
-  const transaction = await sequelize.transaction();
+async function createTransaction({ senderAccountNumber, receiverAccountNumber, amount, details, type, userId }) {
+    const t = await sequelize.transaction();
 
-  try {
-    const senderAccount = await AccountModel.findByPk(senderAccountId, {transaction: transaction, lock: true});
-    const receiverAccount = await AccountModel.findByPk(receiverAccountId, {transaction: transaction, lock: true});
-  
-    await senderAccount.update({ balance: Number(senderAccount.balance) - Number(amount) });
-    await receiverAccount.update({ balance: Number(receiverAccount.balance) + Number(amount) });
-  
-    const newTransaction = await TransactionsModel.create({ senderAccountId, receiverAccountId, amount, details, type: 'TRANSFER' }, { transaction: transaction });
-    await transaction.commit();
+    try {
+        let [senderAccount, receiverAccount] = [null, null];
+        const amountNum = Number(amount);
 
-    return newTransaction;
-  } catch (error) {
-    await transaction.rollback();
-  };
-};
+        if (amountNum <= 0) throw new Error("Amount must be greater than 0");
 
-async function getAllTransactionsForAccount(accountId) {
-  const transactions = await TransactionsModel.findAll({
-    where: {
-      [Op.or]: [{ senderAccountId: accountId }, { receiverAccountId: accountId }],
-    },
-  });
-  return transactions;
+        if (type === 'WITHDRAWAL' || type === 'TRANSFER') {
+            senderAccount = await AccountModel.findOne({ 
+                where: { accountNumber: senderAccountNumber, userId }, 
+                transaction: t, 
+                lock: true 
+            });
+
+            if (!senderAccount) throw new Error("Sender account not found or access denied");
+            if (Number(senderAccount.balance) < amountNum) throw new Error("Insufficient funds");
+
+            await senderAccount.increment('balance', { by: -amountNum, transaction: t });            
+            await senderAccount.reload({ transaction: t });
+        }
+
+        if (type === 'DEPOSIT' || type === 'TRANSFER') {
+            receiverAccount = await AccountModel.findOne({ 
+                where: { accountNumber: receiverAccountNumber }, 
+                transaction: t, 
+                lock: true 
+            });
+
+            if (!receiverAccount) throw new Error("Receiver account not found");
+
+            await receiverAccount.increment('balance', { by: amountNum, transaction: t });
+            await receiverAccount.reload({ transaction: t });
+        }
+
+        const newTransaction = await TransactionsModel.create({
+            senderAccountId: senderAccount?.id || null,
+            receiverAccountId: receiverAccount?.id || null,
+            amount: amountNum,
+            details,
+            type
+        }, { transaction: t });
+
+        await t.commit();
+        return newTransaction;
+
+    } catch (error) {
+        await t.rollback();
+        throw error;
+    }
 }
 
-export const transactionServices = { getAllTransactionsForAccount, createTransaction };
-export default transactionServices;
+async function getAllTransactionsForAccount(userId, accountNumber, options = {}) {
+    const { limit = 10, page = 1, type, sort = 'DESC' } = options;
+
+    const account = await AccountModel.findOne({ where: { accountNumber, userId } });
+    if (!account) throw new Error("Account not found");
+
+    const offset = (page - 1) * limit;
+    const whereConditions = { [Op.or]: [{ senderAccountId: account.id }, { receiverAccountId: account.id }] };
+    if (type) whereConditions.type = type;
+
+    const { count, rows } = await TransactionsModel.findAndCountAll({
+        where: whereConditions,
+        limit: Number(limit),
+        offset: Number(offset),
+        order: [['createdAt', sort]],
+    });
+
+    return {
+        totalItems: count,
+        totalPages: Math.ceil(count / limit),
+        currentPage: Number(page),
+        transactions: rows
+    };
+}
+
+export default { createTransaction, getAllTransactionsForAccount };
