@@ -52,35 +52,62 @@ VALUES
 (23, 20, 'Fondo de Caza', 'ES000023', 6000.00, NOW(), NOW()),
 (24, 14, 'Caja B Meñique', 'ES000024', 45000.00, NOW(), NOW());
 
--- 3. POBLAR TABLA Transactions (Con details)
+-- 3. POBLAR TABLA Transactions (Ampliada con más datos)
 INSERT INTO public."Transactions" ("senderAccountId", "receiverAccountId", amount, details, type, "createdAt", "updatedAt")
 VALUES
--- Depósitos
-(NULL, 1, 1000.00, 'Ingreso nómina Guardia de la Noche', 'DEPOSIT', NOW(), NOW()),
-(NULL, 3, 5000.00, 'Subvención por dragones', 'DEPOSIT', NOW(), NOW()),
-(NULL, 9, 25000.00, 'Impuestos de Desembarco', 'DEPOSIT', NOW(), NOW()),
-(NULL, 14, 5000.00, 'Inversión inicial Burdel', 'DEPOSIT', NOW(), NOW()),
-(NULL, 21, 1000.00, 'Pago por servicios de escolta', 'DEPOSIT', NOW(), NOW()),
+-- === DEPÓSITOS (Ingresos de dinero) ===
+(NULL, 1, 1000.00, 'Ingreso nómina Guardia de la Noche', 'DEPOSIT', NOW() - INTERVAL '30 days', NOW()),
+(NULL, 3, 5000.00, 'Subvención por dragones', 'DEPOSIT', NOW() - INTERVAL '28 days', NOW()),
+(NULL, 9, 25000.00, 'Impuestos de Desembarco', 'DEPOSIT', NOW() - INTERVAL '25 days', NOW()),
+(NULL, 14, 5000.00, 'Inversión inicial Burdel', 'DEPOSIT', NOW() - INTERVAL '20 days', NOW()),
+(NULL, 21, 1000.00, 'Pago por servicios de escolta', 'DEPOSIT', NOW() - INTERVAL '15 days', NOW()),
+(NULL, 7, 3500.00, 'Rentas de tierras del Norte', 'DEPOSIT', NOW() - INTERVAL '10 days', NOW()),
+(NULL, 17, 12000.00, 'Beneficios de inversiones en Braavos', 'DEPOSIT', NOW() - INTERVAL '5 days', NOW()),
+(NULL, 20, 1500.00, 'Venta de armas de herrería', 'DEPOSIT', NOW() - INTERVAL '2 days', NOW()),
+(NULL, 4, 3000.00, 'Cobro de recompensa', 'DEPOSIT', NOW() - INTERVAL '1 day', NOW()),
+(NULL, 15, 45000.00, 'Herencia de la Casa Tyrell', 'DEPOSIT', NOW(), NOW()),
 
--- Retiros
-(1, NULL, 50.00, 'Cajero automático El Muro', 'WITHDRAWAL', NOW(), NOW()),
-(4, NULL, 100.00, 'Cena en La Posada de la Encrucijada', 'WITHDRAWAL', NOW(), NOW()),
-(7, NULL, 200.00, 'Compras en el mercado de Invernalia', 'WITHDRAWAL', NOW(), NOW()),
-(23, NULL, 500.00, 'Gasto en suministros de tortura', 'WITHDRAWAL', NOW(), NOW()),
-(13, NULL, 20.00, 'Retirada para barcos', 'WITHDRAWAL', NOW(), NOW()),
-(18, NULL, 1500.00, 'Pago a red de informantes', 'WITHDRAWAL', NOW(), NOW()),
+-- === RETIROS (Gastos directos / Cajero) ===
+(1, NULL, 50.00, 'Cajero automático El Muro', 'WITHDRAWAL', NOW() - INTERVAL '29 days', NOW()),
+(4, NULL, 100.00, 'Cena en La Posada de la Encrucijada', 'WITHDRAWAL', NOW() - INTERVAL '27 days', NOW()),
+(7, NULL, 200.00, 'Compras en el mercado de Invernalia', 'WITHDRAWAL', NOW() - INTERVAL '24 days', NOW()),
+(23, NULL, 500.00, 'Gasto en suministros de tortura', 'WITHDRAWAL', NOW() - INTERVAL '22 days', NOW()),
+(13, NULL, 20.00, 'Retirada para barcos', 'WITHDRAWAL', NOW() - INTERVAL '20 days', NOW()),
+(18, NULL, 1500.00, 'Pago a red de informantes', 'WITHDRAWAL', NOW() - INTERVAL '18 days', NOW()),
+(9, NULL, 12000.00, 'Compra de vino de Dorne', 'WITHDRAWAL', NOW() - INTERVAL '15 days', NOW()),
+(21, NULL, 300.00, 'Noche en la taberna', 'WITHDRAWAL', NOW() - INTERVAL '10 days', NOW()),
+(14, NULL, 2500.00, 'Mantenimiento de propiedades', 'WITHDRAWAL', NOW() - INTERVAL '5 days', NOW()),
+(19, NULL, 5.00, 'Compra de un pollo asado', 'WITHDRAWAL', NOW() - INTERVAL '1 day', NOW()),
 
--- Transferencias entre usuarios
-(1, 3, 100.00, 'Regalo de boda', 'TRANSFER', NOW(), NOW()),
-(4, 1, 1000.00, 'Pago de deuda pendiente', 'TRANSFER', NOW(), NOW()),
-(9, 8, 500.00, 'Donación a la Ciudadela', 'TRANSFER', NOW(), NOW()),
-(12, 3, 20.00, 'Préstamo pequeño', 'TRANSFER', NOW(), NOW()),
-(7, 6, 200.00, 'Pago curso de costura', 'TRANSFER', NOW(), NOW()),
-(10, 11, 5.00, 'Propina caballeresca', 'TRANSFER', NOW(), NOW()),
+-- === TRANSFERENCIAS ENTRE PERSONAJES ===
+(1, 3, 100.00, 'Regalo de boda', 'TRANSFER', NOW() - INTERVAL '28 days', NOW()),
+(4, 1, 1000.00, 'Pago de deuda pendiente', 'TRANSFER', NOW() - INTERVAL '27 days', NOW()),
+(9, 8, 500.00, 'Donación a la Ciudadela', 'TRANSFER', NOW() - INTERVAL '26 days', NOW()),
+(12, 3, 20.00, 'Préstamo pequeño', 'TRANSFER', NOW() - INTERVAL '25 days', NOW()),
+(7, 6, 200.00, 'Pago curso de esgrima', 'TRANSFER', NOW() - INTERVAL '24 days', NOW()),
+(10, 11, 5.00, 'Propina caballeresca', 'TRANSFER', NOW() - INTERVAL '23 days', NOW()),
+(14, 18, 2000.00, 'Pago por información secreta', 'TRANSFER', NOW() - INTERVAL '22 days', NOW()),
+(15, 14, 10000.00, 'Acuerdo matrimonial Tyrell-Baelish', 'TRANSFER', NOW() - INTERVAL '21 days', NOW()),
+(21, 19, 150.00, 'Pago apuesta de pelea', 'TRANSFER', NOW() - INTERVAL '20 days', NOW()),
+(20, 11, 100.00, 'Donación para reconstrucción', 'TRANSFER', NOW() - INTERVAL '19 days', NOW()),
+(3, 15, 2500.00, 'Subvención para flota naval', 'TRANSFER', NOW() - INTERVAL '18 days', NOW()),
+(9, 21, 3000.00, 'Pago a mercenarios por protección', 'TRANSFER', NOW() - INTERVAL '17 days', NOW()),
+(8, 9, 100.00, 'Intereses préstamo real', 'TRANSFER', NOW() - INTERVAL '16 days', NOW()),
+(17, 18, 450.00, 'Suscripción mensual a rumores', 'TRANSFER', NOW() - INTERVAL '15 days', NOW()),
+(24, 17, 3000.00, 'Lavado de capitales (Caja B)', 'TRANSFER', NOW() - INTERVAL '14 days', NOW()),
+(2, 7, 500.00, 'Ayuda humanitaria Muro', 'TRANSFER', NOW() - INTERVAL '13 days', NOW()),
+(6, 4, 120.00, 'Devolución de fianza', 'TRANSFER', NOW() - INTERVAL '12 days', NOW()),
+(21, 22, 10.00, 'Propina para el Perro', 'TRANSFER', NOW() - INTERVAL '11 days', NOW()),
+(14, 9, 5000.00, 'Soborno para el Consejo Real', 'TRANSFER', NOW() - INTERVAL '10 days', NOW()),
+(3, 12, 1500.00, 'Suministros para Essos', 'TRANSFER', NOW() - INTERVAL '9 days', NOW()),
 
--- Transferencias propias (Inter-cuentas)
-(1, 2, 50.00, 'Traspaso a cuenta de ahorro', 'TRANSFER', NOW(), NOW()),
-(4, 5, 150.00, 'Ahorro mensual', 'TRANSFER', NOW(), NOW()),
+-- === TRANSFERENCIAS PROPIAS (INTER-CUENTAS) ===
+(1, 2, 50.00, 'Traspaso a cuenta de ahorro', 'TRANSFER', NOW() - INTERVAL '8 days', NOW()),
+(4, 5, 150.00, 'Ahorro mensual', 'TRANSFER', NOW() - INTERVAL '7 days', NOW()),
+(14, 24, 2000.00, 'Desvío a cuenta B', 'TRANSFER', NOW() - INTERVAL '6 days', NOW()),
+(3, 4, 1000.00, 'Traspaso para gastos de viaje', 'TRANSFER', NOW() - INTERVAL '5 days', NOW()),
+(15, 14, 5000.00, 'Reajuste de cartera Highgarden', 'TRANSFER', NOW() - INTERVAL '4 days', NOW()),
+(17, 24, 500.00, 'Mover fondos a cuenta secundaria', 'TRANSFER', NOW() - INTERVAL '3 days', NOW());
 
 -- Transferencias variadas
 (14, 18, 2000.00, 'Pago por información secreta', 'TRANSFER', NOW(), NOW()),
