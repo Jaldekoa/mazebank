@@ -7,6 +7,7 @@
  */
 
 import { swaggerUi, swaggerSpec } from "./config/swagger.js";
+import expressEjsLayouts from "express-ejs-layouts";
 import { checkDB, syncDB } from "./config/db.js";
 import { rateLimit } from "express-rate-limit";
 import router from "./routes/routes.js";
@@ -44,7 +45,12 @@ const limiter = rateLimit({
 
 const app = express();
 
+app.set("views", "./src/views");
+app.set("view engine", "ejs");
+
 // --- Middleware Global ---
+app.use(expressEjsLayouts);
+app.use(express.static("public"));
 
 app.use(limiter);
 app.use(cors(corsOptions));
@@ -61,6 +67,10 @@ app.use("/", router);
 
 // La interfaz estará disponible en http://localhost:3000/api-docs
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
+app.get("/", (req, res) => {
+  res.render("pages/home", { layout: "layouts/main" });
+});
 
 /**
  * Endpoint de verificación de salud (Health Check).
